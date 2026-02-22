@@ -39,14 +39,19 @@ body{
     gap:20px;
 }
 .box{
-    background: linear-gradient(145deg,#5c432b,#2e9e36); /* brown to green */
-    border:1px solid #4a3827;
-    border-radius:10px;
-    padding:16px;       /* reduced from 22px */
-    font-size: 0.95em;  /* slightly smaller text */
-    box-shadow:0 0 10px rgba(0,0,0,0.6);
+    background: linear-gradient(145deg, #6b4423 0%, #4a2f1b 40%, #2f6f1e 100%);
+    border: 1px solid #3a2415;
+    border-radius: 12px;
+    padding: 18px;
+    font-size: 0.95em;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.box:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.7);
+}
 
 .box h2{
     margin-top:0;
