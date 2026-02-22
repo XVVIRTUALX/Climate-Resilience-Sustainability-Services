@@ -1,114 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oxygen Security - PutaiaoTech</title>
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(180deg, #0f1f0f, #061306);
-        color: #ffffff;
-    }
-    .container {
-        max-width: 1000px;
-        margin: auto;
-        padding: 20px;
-    }
-    .title {
-        text-align: center;
-        font-size: 28px;
-        font-weight: bold;
-        color: #c2a55c;
-        margin-bottom: 20px;
-    }
-    .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
-    .box {
-        background: linear-gradient(145deg, #1a1a1a, #101010);
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-    .box h2 {
-        margin: 0 0 10px 0;
-        color: #c2a55c;
-    }
-    .box p {
-        color: #dcdcdc;
-        margin: 0 0 15px 0;
-    }
-    .btn {
-        display: inline-block;
-        background: linear-gradient(180deg,#5edb63,#2e9e36);
-        color: white;
-        padding: 10px 18px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: 0.2s;
-    }
-    .btn:hover {
-        background: linear-gradient(180deg,#6fff73,#35b63f);
-    }
-    @media(max-width: 700px){
-        .grid{
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
-</head>
-<body>
-<div class="container">
-    <div class="title">Oxygen Security - PutaiaoTech</div>
-    <div class="grid">
-        <div class="box">
-            <h2>Freshwater & Rain</h2>
-            <p>Monitor dissolved oxygen in rivers, lakes, and rainfall collection points.</p>
-            <a href="#freshwater" class="btn">Open Freshwater Monitoring</a>
-        </div>
-        <div class="box">
-            <h2>Ocean</h2>
-            <p>Track oxygen levels in coastal and open ocean waters, including plankton activity.</p>
-            <a href="#ocean" class="btn">Open Ocean Monitoring</a>
-        </div>
-        <div class="box">
-            <h2>Air & Atmosphere</h2>
-            <p>Measure oxygen content in outdoor and lab air for environmental tracking.</p>
-            <a href="#air" class="btn">Open Air Monitoring</a>
-        </div>
-        <div class="box">
-            <h2>Lab / Nuclear Tracking</h2>
-            <p>Specialized monitoring for lab environments, including nuclear-related scenarios.</p>
-            <a href="#lab" class="btn">Open Lab Monitoring</a>
-        </div>
-    </div>
-
-    <!-- Optional Sections for Anchors -->
-    <div id="freshwater" style="margin-top:50px;">
-        <h2>Freshwater & Rain Monitoring</h2>
-        <p>Details, charts, and logs can go here for river, lake, and rain collection oxygen tracking.</p>
-    </div>
-
-    <div id="ocean" style="margin-top:50px;">
-        <h2>Ocean Monitoring</h2>
-        <p>Details, charts, and logs for coastal and open ocean oxygen tracking, plankton observations, etc.</p>
-    </div>
-
-    <div id="air" style="margin-top:50px;">
-        <h2>Air & Atmosphere Monitoring</h2>
-        <p>Information and tracking tools for outdoor and laboratory air oxygen measurements.</p>
-    </div>
-
-    <div id="lab" style="margin-top:50px;">
-        <h2>Lab / Nuclear Tracking</h2>
-        <p>Specialized lab monitoring for oxygen levels, including any nuclear or controlled environments.</p>
-    </div>
-</div>
-</body>
-</html>
+.box {
+    background: #a0d8ef; /* light cyan-blue for clean water/air */
+    border: 1px solid #2c6e91; /* ocean blue accent */
+    border-radius: 12px;
+    padding: 18px;
+    font-size: 0.95em;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+.box h2 {
+    color: #ffffff; /* readable over blue background */
+}
+.btn {
+    background: linear-gradient(180deg,#2c6e91,#1b4f6f); /* dark sea blue */
+    color: #ffffff;
+}
+.btn:hover {
+    background: linear-gradient(180deg,#3f8bbf,#1a3d5a); /* slightly lighter on hover */
+}
