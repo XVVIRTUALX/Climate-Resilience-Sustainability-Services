@@ -5,46 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Air & Atmosphere Monitoring - Oxygen Security</title>
 <style>
-body { margin:0; font-family: Arial, Helvetica, sans-serif; background: #87ceeb; color:#000; }
-.container { max-width:900px; margin:auto; padding:20px; }
-h1 { text-align:center; color:#0f1f0f; }
-label { display:block; margin:12px 0 4px; }
-input, textarea { width:100%; padding:8px; margin-bottom:10px; border-radius:6px; border:1px solid #0f1f0f; }
-button { background: #1b4f6f; color:white; padding:10px 20px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
-button:hover { background:#163c55; }
+body { margin:0; font-family: Arial; background:#87ceeb; color:#000; }
+.container { max-width:800px; margin:auto; padding:20px; }
+h1 { text-align:center; color:#003366; }
+form { display:flex; flex-direction:column; gap:12px; }
+input, select, textarea, button { padding:10px; border-radius:6px; border:1px solid #003366; font-size:1em; }
+button { background:#003366; color:#fff; font-weight:bold; cursor:pointer; }
+button:hover { background:#0055a5; }
+.back-link { margin-top:20px; text-align:center; }
+.back-link a { color:#003366; text-decoration:underline; }
 </style>
 </head>
 <body>
+
 <div class="container">
 <h1>Air & Atmosphere Monitoring</h1>
-<form id="airForm">
-<label>Location:</label>
-<input type="text" name="location" required>
-<label>Date & Time:</label>
-<input type="datetime-local" name="datetime" required>
-<label>Oxygen Level (%):</label>
-<input type="number" step="0.01" name="oxygen" required>
-<label>Observations / Notes:</label>
-<textarea name="notes" rows="4"></textarea>
-<button type="button" onclick="saveData()">Save to USB</button>
+
+<form id="dataForm">
+    <label>Location</label>
+    <input type="text" name="location" required>
+
+    <label>Oxygen Level (%)</label>
+    <input type="number" step="0.01" name="oxygen" required>
+
+    <label>Temperature (°C)</label>
+    <input type="number" step="0.1" name="temperature">
+
+    <label>Notes</label>
+    <textarea name="notes" rows="3"></textarea>
+
+    <button type="button" onclick="saveData()">Save to USB</button>
 </form>
+
+<div class="back-link">
+    <a href="oxygen-security.html">Back to Oxygen Security</a>
+</div>
+</div>
+
 <script>
-function saveData() {
-    const form = document.getElementById('airForm');
-    const data = {
-        location: form.location.value,
-        datetime: form.datetime.value,
-        oxygen: form.oxygen.value,
-        notes: form.notes.value
-    };
-    const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `air_data_${Date.now()}.json`;
+function saveData(){
+    const form=document.getElementById('dataForm');
+    const data={};
+    for(let el of form.elements){ if(el.name) data[el.name]=el.value; }
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download="air_data.json";
     a.click();
-    alert('Data saved! Please copy the downloaded file to your USB.');
+    URL.revokeObjectURL(a.href);
+    alert("Data saved to USB!");
 }
 </script>
-</div>
+
 </body>
 </html>
