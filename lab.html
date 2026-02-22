@@ -22,6 +22,9 @@ button:hover { background:#aa00aa; }
 <h1>Lab / Nuclear Monitoring</h1>
 
 <form id="dataForm">
+    <label>Lab / Site ID</label>
+    <input type="text" name="userID" required>
+
     <label>Lab Name / Location</label>
     <input type="text" name="lab" required>
 
@@ -45,12 +48,12 @@ button:hover { background:#aa00aa; }
 <script>
 function saveData(){
     const form=document.getElementById('dataForm');
-    const data={};
+    const data={timestamp:new Date().toISOString()};
     for(let el of form.elements){ if(el.name) data[el.name]=el.value; }
     const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
     const a=document.createElement('a');
     a.href=URL.createObjectURL(blob);
-    a.download="lab_data.json";
+    a.download="lab_data_"+new Date().toISOString().replace(/[:.]/g,'-')+".json";
     a.click();
     URL.revokeObjectURL(a.href);
     alert("Data saved to USB!");
