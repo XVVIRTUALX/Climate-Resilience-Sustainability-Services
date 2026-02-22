@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab / Nuclear Monitoring - Oxygen Security</title>
+<style>
+body { margin:0; font-family: Arial, Helvetica, sans-serif; background: #4b0082; color:#fff; }
+.container { max-width:900px; margin:auto; padding:20px; }
+h1 { text-align:center; color:#e0e0ff; }
+label { display:block; margin:12px 0 4px; }
+input, textarea { width:100%; padding:8px; margin-bottom:10px; border-radius:6px; border:1px solid #e0e0ff; }
+button { background: #9370db; color:white; padding:10px 20px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
+button:hover { background:#7a52c1; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Lab / Nuclear Monitoring</h1>
+<form id="labForm">
+<label>Lab / Facility Name:</label>
+<input type="text" name="labname" required>
+<label>Date & Time:</label>
+<input type="datetime-local" name="datetime" required>
+<label>Oxygen Level (mg/L or %):</label>
+<input type="number" step="0.01" name="oxygen" required>
+<label>Observations / Notes:</label>
+<textarea name="notes" rows="4"></textarea>
+<button type="button" onclick="saveData()">Save to USB</button>
+</form>
+<script>
+function saveData() {
+    const form = document.getElementById('labForm');
+    const data = {
+        labname: form.labname.value,
+        datetime: form.datetime.value,
+        oxygen: form.oxygen.value,
+        notes: form.notes.value
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `lab_data_${Date.now()}.json`;
+    a.click();
+    alert('Data saved! Please copy the downloaded file to your USB.');
+}
+</script>
+</div>
+</body>
+</html>
