@@ -22,6 +22,9 @@ button:hover { background:#1a75a0; }
 <h1>Ocean Monitoring</h1>
 
 <form id="dataForm">
+    <label>Site/User ID</label>
+    <input type="text" name="userID" required>
+
     <label>Site Name</label>
     <input type="text" name="site" required>
 
@@ -44,15 +47,13 @@ button:hover { background:#1a75a0; }
 
 <script>
 function saveData(){
-    const form = document.getElementById('dataForm');
-    const data = {};
-    for(let el of form.elements){
-        if(el.name) data[el.name] = el.value;
-    }
-    const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = "ocean_data.json";
+    const form=document.getElementById('dataForm');
+    const data={timestamp:new Date().toISOString()};
+    for(let el of form.elements){ if(el.name) data[el.name]=el.value; }
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download="ocean_data_"+new Date().toISOString().replace(/[:.]/g,'-')+".json";
     a.click();
     URL.revokeObjectURL(a.href);
     alert("Data saved to USB!");
