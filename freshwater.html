@@ -5,43 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Freshwater Monitoring - Oxygen Security</title>
 <style>
-body {
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #a0d8ef; /* light cyan-blue */
-    color: #000;
-}
-.container {
-    max-width:800px;
-    margin:auto;
-    padding:20px;
-}
-h1 {
-    text-align:center;
-    color:#004466;
-}
-form {
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-input, select, textarea, button {
-    padding:10px;
-    border-radius:6px;
-    border:1px solid #004466;
-    font-size:1em;
-}
-button {
-    background:#004466;
-    color:#fff;
-    font-weight:bold;
-    cursor:pointer;
-}
+body { margin:0; font-family: Arial, Helvetica, sans-serif; background: #a0d8ef; color: #000; }
+.container { max-width:800px; margin:auto; padding:20px; }
+h1 { text-align:center; color:#004466; }
+form { display:flex; flex-direction:column; gap:12px; }
+input, select, textarea, button { padding:10px; border-radius:6px; border:1px solid #004466; font-size:1em; }
+button { background:#004466; color:#fff; font-weight:bold; cursor:pointer; }
 button:hover { background:#006699; }
-.back-link {
-    margin-top:20px;
-    text-align:center;
-}
+.back-link { margin-top:20px; text-align:center; }
 .back-link a { color:#004466; text-decoration:underline; }
 </style>
 </head>
@@ -51,6 +22,9 @@ button:hover { background:#006699; }
 <h1>Freshwater & Rain Monitoring</h1>
 
 <form id="dataForm">
+    <label>Site/User ID</label>
+    <input type="text" name="userID" placeholder="Enter site or user ID" required>
+
     <label>Site Name</label>
     <input type="text" name="site" required>
 
@@ -73,20 +47,15 @@ button:hover { background:#006699; }
 
 <script>
 function saveData(){
-    const form = document.getElementById('dataForm');
-    const data = {};
-    for(let el of form.elements){
-        if(el.name){
-            data[el.name] = el.value;
-        }
-    }
-    const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = "freshwater_data.json";
+    const form=document.getElementById('dataForm');
+    const data={timestamp:new Date().toISOString()};
+    for(let el of form.elements){ if(el.name) data[el.name]=el.value; }
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download="freshwater_data_"+new Date().toISOString().replace(/[:.]/g,'-')+".json";
     a.click();
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(a.href);
     alert("Data saved to USB!");
 }
 </script>
