@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Air & Atmosphere Monitoring - Oxygen Security</title>
+<style>
+body { margin:0; font-family: Arial, Helvetica, sans-serif; background: #87ceeb; color:#000; }
+.container { max-width:900px; margin:auto; padding:20px; }
+h1 { text-align:center; color:#0f1f0f; }
+label { display:block; margin:12px 0 4px; }
+input, textarea { width:100%; padding:8px; margin-bottom:10px; border-radius:6px; border:1px solid #0f1f0f; }
+button { background: #1b4f6f; color:white; padding:10px 20px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
+button:hover { background:#163c55; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Air & Atmosphere Monitoring</h1>
+<form id="airForm">
+<label>Location:</label>
+<input type="text" name="location" required>
+<label>Date & Time:</label>
+<input type="datetime-local" name="datetime" required>
+<label>Oxygen Level (%):</label>
+<input type="number" step="0.01" name="oxygen" required>
+<label>Observations / Notes:</label>
+<textarea name="notes" rows="4"></textarea>
+<button type="button" onclick="saveData()">Save to USB</button>
+</form>
+<script>
+function saveData() {
+    const form = document.getElementById('airForm');
+    const data = {
+        location: form.location.value,
+        datetime: form.datetime.value,
+        oxygen: form.oxygen.value,
+        notes: form.notes.value
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `air_data_${Date.now()}.json`;
+    a.click();
+    alert('Data saved! Please copy the downloaded file to your USB.');
+}
+</script>
+</div>
+</body>
+</html>
