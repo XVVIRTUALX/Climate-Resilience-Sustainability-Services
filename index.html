@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climate Resilience & Sustainability Services</title>
+<style>
+body {font-family: Arial, sans-serif; line-height:1.6; margin:20px; background:#f4f6f8; color:#333;}
+h1, h2 {color:#1f3c6d;}
+label {display:block; margin-top:15px;}
+button {padding:10px 20px; margin-top:10px; cursor:pointer;}
+button:disabled {opacity:0.5; cursor:not-allowed;}
+section {background:#fff; padding:20px; margin-bottom:20px; border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.05);}
+.hidden {display:none;}
+footer {text-align:center; margin-top:40px; font-size:0.85em; border-top:1px solid #ccc; padding-top:10px;}
+</style>
+</head>
+<body>
+
+<h1>Climate Resilience & Sustainability Services</h1>
+
+<!-- Step 1: Select Module -->
+<section id="moduleSection">
+<h2>Select a Module</h2>
+<select id="moduleSelect">
+  <option value="">--Choose Module--</option>
+  <option value="module1">Monitoring & Reporting</option>
+  <option value="module2">Sustainability Advisory</option>
+  <option value="module3">Carbon Tracking</option>
+  <option value="module4">Water Management</option>
+  <option value="module5">Energy Efficiency</option>
+  <option value="module6">Climate Risk Assessment</option>
+  <option value="module7">Community Projects</option>
+  <option value="module8">Environmental Compliance</option>
+</select>
+<button id="moduleContinueBtn" disabled>Continue</button>
+</section>
+
+<!-- Step 2: Select App -->
+<section id="appSection" class="hidden">
+<h2>Select App</h2>
+<select id="appSelect">
+  <option value="">--Choose App--</option>
+  <option value="app1">App 1</option>
+  <option value="app2">App 2</option>
+  <option value="app3">App 3</option>
+</select>
+<button id="appContinueBtn" disabled>Continue</button>
+</section>
+
+<!-- Step 3: Payment & Terms -->
+<section id="paymentSection" class="hidden">
+<h2>Payment & Terms</h2>
+<p>Monthly Subscription: <strong>$49 NZD</strong></p>
+<p>Please make payment to:</p>
+<p>
+Bank: [Your Bank Name]<br>
+Account Name: PutaiaoTech<br>
+Account Number: XX-XXXX-XXXXXXX-XX<br>
+Reference: Your Name or Company
+</p>
+<label>
+  <input type="checkbox" id="termsAgree">
+  I have read and agree to the <a href="https://xvvirtualx.github.io/PutaiaoTech/terms.html" target="_blank">Terms & Conditions</a>.
+</label>
+<button id="accessBtn" disabled>Enter App</button>
+</section>
+
+<footer>
+© 2026 PutaiaoTech. All Rights Reserved.<br>
+Virtual Online Contact Centre – Te Putaiao Trust
+</footer>
+
+<script>
+// Step 1: Enable Continue after module selection
+const moduleSelect = document.getElementById("moduleSelect");
+const moduleBtn = document.getElementById("moduleContinueBtn");
+const moduleSection = document.getElementById("moduleSection");
+const appSection = document.getElementById("appSection");
+
+moduleSelect.addEventListener("change", () => {
+  moduleBtn.disabled = !moduleSelect.value;
+});
+
+moduleBtn.addEventListener("click", () => {
+  appSection.classList.remove("hidden");
+  moduleSection.style.display = "none";
+});
+
+// Step 2: Enable Continue after app selection
+const appSelect = document.getElementById("appSelect");
+const appBtn = document.getElementById("appContinueBtn");
+const paymentSection = document.getElementById("paymentSection");
+
+appSelect.addEventListener("change", () => {
+  appBtn.disabled = !appSelect.value;
+});
+
+appBtn.addEventListener("click", () => {
+  paymentSection.classList.remove("hidden");
+  appSection.style.display = "none";
+});
+
+// Step 3: Enable access button after terms checkbox
+const termsCheckbox = document.getElementById("termsAgree");
+const accessBtn = document.getElementById("accessBtn");
+
+termsCheckbox.addEventListener("change", () => {
+  accessBtn.disabled = !termsCheckbox.checked;
+});
+
+// Step 4: Redirect to selected app
+accessBtn.addEventListener("click", () => {
+  const moduleName = moduleSelect.value;
+  const appName = appSelect.value;
+  window.location.href = `${moduleName}/${appName}/dashboard.html`; 
+});
+</script>
+
+</body>
+</html>
